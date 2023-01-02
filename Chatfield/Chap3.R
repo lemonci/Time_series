@@ -78,3 +78,4 @@ plot(xx, type="l", xlab="Time", ylab="Series")
 acf(xx, xlab="Lag", ylab="ACF", main="")
 plot(yy$series, type="l", xlab="Time", ylab="Series")
 acf(yy$series, xlab="Lag", ylab="ACF", main="")
+
