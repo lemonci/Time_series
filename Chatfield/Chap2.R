@@ -49,6 +49,8 @@ plot(c(1, length(bev)), c(0, max(bev)), type="n", xlab="Year", ylab="Index", xax
 lines(seq(8, length(bev)-8), bev.spencer)
 axis(1, x.pos-1500+1, x.pos)
 
+# Finish Chap 2 of Larsen
+
 wine<-read.csv("../data/aus_wine_sales.csv", header=F)
 wine.ts<-ts(wine[,2], frequency=4, start=c(1985,1)) # create a time series object
 wine.de<-decompose(wine.ts, type="additive")
