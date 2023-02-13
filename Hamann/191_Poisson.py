@@ -53,4 +53,3 @@ for j in range(200):
     wl_avg[j] = np.average(waiting_list)
             
 print(np.average(wl_avg))
-
