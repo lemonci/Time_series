@@ -2,6 +2,7 @@
 import math
 import random
 import matplotlib.pyplot as plt
+import pandas as pd
 
 problem_size = 100
 
@@ -35,12 +36,25 @@ def execute(problem_size, p):
                 pass
     return performance/(counter)
 
-p_list = list(range(81))[1:]
-performance_list = [None]*80
+def get_performance(plist, performance_list):
+    for p in p_list:
+        performance_list[p-1] = execute(100, p)
+        
+    unit_time = performance_list[0]
+    normalized_performance_list = [x/unit_time for x in performance_list]
+    return normalized_performance_list
 
-for p in p_list:
-    performance_list[p-1] = execute(100, p)
-    
-unit_time = performance_list[0]
-normalized_performance_list = [x/unit_time for x in performance_list]
-plt.plot(normalized_performance_list)
+# run the experiment 200 times
+performance_evaluation = [None] * 500
+for i in range(len(performance_evaluation)):    
+    p_list = list(range(81))[1:]
+    performance_list = [None]*80
+    performance_evaluation[i] = get_performance(p_list, performance_list)
+
+df = pd.DataFrame(performance_evaluation)
+overall_avg = df.mean(axis = 0).to_list()
+
+
+plt.xlabel("Processor numbers")
+plt.ylabel("Speed-up")
+plt.plot(overall_avg)
